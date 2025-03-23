@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const accessCount = sessionStorage.getItem("accessCount");
+    let totalCount = 0;
+    if (accessCount) {
+      totalCount = parseInt(accessCount) + 1;
+    }
+    sessionStorage.setItem("accessCount", totalCount);
+    setCount(totalCount);
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-gray-800">
+      <h1 className="text-4xl font-bold text-red-600 mb-4">
+        AIなんぞ…使ってんじゃねええ！！！！！
+      </h1>
+      <p className="text-lg mb-2">あなたが生成AIサイトへアクセスした回数</p>
+      <p className="text-5xl font-semibold text-blue-500">{count}</p>
+    </main>
+  );
 }
 
 export default App
