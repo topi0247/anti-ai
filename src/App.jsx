@@ -5,7 +5,7 @@ function App() {
 
   useEffect(() => {
     const accessCount = sessionStorage.getItem("accessCount");
-    let totalCount = 0;
+    let totalCount = 1;
     if (accessCount) {
       totalCount = parseInt(accessCount) + 1;
     }
